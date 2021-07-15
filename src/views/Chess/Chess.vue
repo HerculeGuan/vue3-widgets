@@ -50,14 +50,18 @@ export default {
     };
 
     const moveToStop = (chess) => {
-      validateRule(chess, initChess);
+      let validMove = validateRule(chess, initChess);
       // 移动中
-      if (true) {
+      if (validMove) {
         //移动有效
         chess.x = Math.round(chess.x);
         chess.y = Math.round(chess.y);
         isMove.value = false;
         reverseBout();
+      } else {
+        chess.x = initChess.x;
+        chess.y = initChess.y;
+        isMove.value = false;
       }
     };
 
@@ -117,6 +121,7 @@ export default {
 
 <style lang="scss" scoped>
 .chess {
+  height: 100vh;
   user-select: none;
   display: flex;
   justify-content: center;
@@ -126,7 +131,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("../../assets/chess.png") center no-repeat;
+    // background: url("../../assets/chess.png") center no-repeat;
     background-size: cover;
     .action-area {
       position: relative;
