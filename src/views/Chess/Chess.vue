@@ -131,7 +131,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("../../assets/chess.png") center no-repeat;
+    // background: url("../../assets/chess.png") center no-repeat;
     background-size: cover;
     .action-area {
       position: relative;
