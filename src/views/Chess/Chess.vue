@@ -32,10 +32,10 @@ export default {
   setup: () => {
     const { chessList } = reactive(chessJSON);
     let area = ref(null);
-    let bout = ref("red");
-    let isMove = ref(false);
-    let currentMoveChessId = 0,
-      areaTop = 0,
+    let bout = ref("red"); // 隶属阵营
+    let isMove = ref(false); // 是否正在移动
+    let initChessObj = null; // 移动之前的棋子对象
+    let areaTop = 0, // 移动区域离边界的距离
       areaLeft = 0;
 
     const onClickChess = (chess) => {
@@ -48,9 +48,10 @@ export default {
       } else {
         // 判断是否可以走
         if (chess.camp === bout.value) {
+          // 先记录移动之前的位置
+          initChessObj = JSON.parse(JSON.stringify(chess));
           moveChessToEnd(chess);
           isMove.value = true;
-          currentMoveChessId = chess.id;
         } else {
           console.warn("对方的回合");
         }
@@ -60,7 +61,7 @@ export default {
     const onMousemove = (e) => {
       if (isMove.value) {
         chessList.forEach((v) => {
-          if (v.id === currentMoveChessId) {
+          if (v.id === initChessObj.id) {
             v.x = (e.clientX - areaLeft) / 50;
             v.y = (e.clientY - areaTop) / 50;
           }
