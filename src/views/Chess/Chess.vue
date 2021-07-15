@@ -39,6 +39,7 @@ export default {
     let areaTop = 0, // 移动区域离边界的距离
       areaLeft = 0;
 
+    // 点击棋子
     const onClickChess = (chess) => {
       if (isMove.value) {
         moveToStop(chess);
@@ -49,13 +50,11 @@ export default {
 
     const moveToStop = (chess) => {
       // 移动中
-      if (true) {
-        //移动有效
-        chess.x = Math.round(chess.x);
-        chess.y = Math.round(chess.y);
-        isMove.value = false;
-        reverseBout();
-      }
+      //移动有效
+      chess.x = Math.round(chess.x);
+      chess.y = Math.round(chess.y);
+      isMove.value = false;
+      reverseBout();
     };
 
     const stopToMove = (chess) => {
