@@ -50,7 +50,7 @@ export default {
     };
 
     const moveToStop = (chess) => {
-      let validMove = validateRule(chess, initChess);
+      let validMove = validateRule(chess, initChess, chessList);
       // 移动中
       if (validMove) {
         //移动有效
@@ -131,11 +131,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    // background: url("../../assets/chess.png") center no-repeat;
+    background: url("../../assets/chess.png") center no-repeat;
     background-size: cover;
     .action-area {
       position: relative;
-      outline: 1px solid blue;
       width: 400px;
       height: 450px;
     }
