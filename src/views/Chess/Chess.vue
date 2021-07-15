@@ -21,6 +21,7 @@
 
 <script>
 import SingleChess from "../../components/SingleChess.vue";
+import chessRule from "./chess-rule";
 import chessJSON from "./chess.json";
 import { reactive, ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
@@ -40,21 +41,32 @@ export default {
 
     const onClickChess = (chess) => {
       if (isMove.value) {
+        moveToStop(chess);
+      } else {
+        stopToMove(chess);
+      }
+    };
+
+    const moveToStop = (chess) => {
+      // 移动中
+      if (true) {
+        //移动有效
         chess.x = Math.round(chess.x);
         chess.y = Math.round(chess.y);
-        // 落子中
         isMove.value = false;
         reverseBout();
+      }
+    };
+
+    const stopToMove = (chess) => {
+      // 判断是否可以走
+      if (chess.camp === bout.value) {
+        // 先记录移动之前的位置
+        initChessObj = JSON.parse(JSON.stringify(chess));
+        moveChessToEnd(chess);
+        isMove.value = true;
       } else {
-        // 判断是否可以走
-        if (chess.camp === bout.value) {
-          // 先记录移动之前的位置
-          initChessObj = JSON.parse(JSON.stringify(chess));
-          moveChessToEnd(chess);
-          isMove.value = true;
-        } else {
-          console.warn("对方的回合");
-        }
+        console.warn("对方的回合");
       }
     };
 
