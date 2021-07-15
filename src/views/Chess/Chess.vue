@@ -31,11 +31,12 @@ export default {
     SingleChess,
   },
   setup: () => {
+    const { validateRule } = chessRule;
     const { chessList } = reactive(chessJSON);
     let area = ref(null);
     let bout = ref("red"); // 隶属阵营
     let isMove = ref(false); // 是否正在移动
-    let initChessObj = null; // 移动之前的棋子对象
+    let initChess = null; // 移动之前的棋子对象
     let areaTop = 0, // 移动区域离边界的距离
       areaLeft = 0;
 
@@ -49,19 +50,22 @@ export default {
     };
 
     const moveToStop = (chess) => {
+      validateRule(chess, initChess);
       // 移动中
-      //移动有效
-      chess.x = Math.round(chess.x);
-      chess.y = Math.round(chess.y);
-      isMove.value = false;
-      reverseBout();
+      if (true) {
+        //移动有效
+        chess.x = Math.round(chess.x);
+        chess.y = Math.round(chess.y);
+        isMove.value = false;
+        reverseBout();
+      }
     };
 
     const stopToMove = (chess) => {
       // 判断是否可以走
       if (chess.camp === bout.value) {
         // 先记录移动之前的位置
-        initChessObj = JSON.parse(JSON.stringify(chess));
+        initChess = JSON.parse(JSON.stringify(chess));
         moveChessToEnd(chess);
         isMove.value = true;
       } else {
@@ -72,7 +76,7 @@ export default {
     const onMousemove = (e) => {
       if (isMove.value) {
         chessList.forEach((v) => {
-          if (v.id === initChessObj.id) {
+          if (v.id === initChess.id) {
             v.x = (e.clientX - areaLeft) / 50;
             v.y = (e.clientY - areaTop) / 50;
           }
