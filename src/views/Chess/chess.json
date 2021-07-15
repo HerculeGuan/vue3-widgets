@@ -1,0 +1,37 @@
+{
+    "chessList":[
+        { "id":1,"name": "兵", "rule": "soldier", "x": 0, "y": 6, "camp": "red" },
+        { "id":2,"name": "兵", "rule": "soldier", "x": 2, "y": 6, "camp": "red" },
+        { "id":3,"name": "兵", "rule": "soldier", "x": 4, "y": 6, "camp": "red" },
+        { "id":4,"name": "兵", "rule": "soldier", "x": 6, "y": 6, "camp": "red" },
+        { "id":5,"name": "兵", "rule": "soldier", "x": 8, "y": 6, "camp": "red" },
+        { "id":6,"name": "炮", "rule": "gun", "x": 1, "y": 7, "camp": "red" },
+        { "id":7,"name": "炮", "rule": "gun", "x": 7, "y": 7, "camp": "red" },
+        { "id":8,"name": "车", "rule": "vehicle", "x": 0, "y": 9, "camp": "red" },
+        { "id":9,"name": "车", "rule": "vehicle", "x": 8, "y": 9, "camp": "red" },
+        { "id":10,"name": "马", "rule": "horse", "x": 1, "y": 9, "camp": "red" },
+        { "id":11,"name": "马", "rule": "horse", "x": 7, "y": 9, "camp": "red" },
+        { "id":12,"name": "相", "rule": "chancellor", "x": 2, "y": 9, "camp": "red" },
+        { "id":13,"name": "相", "rule": "chancellor", "x": 6, "y": 9, "camp": "red" },
+        { "id":14,"name": "仕", "rule": "bachelor", "x": 3, "y": 9, "camp": "red" },
+        { "id":15,"name": "仕", "rule": "bachelor", "x": 5, "y": 9, "camp": "red" },
+        { "id":16,"name": "帅", "rule": "general", "x": 4, "y": 9, "camp": "red" },
+        { "id":17,"name": "卒", "rule": "soldier", "x": 0, "y": 3, "camp": "black" },
+        { "id":18,"name": "卒", "rule": "soldier", "x": 2, "y": 3, "camp": "black" },
+        { "id":19,"name": "卒", "rule": "soldier", "x": 4, "y": 3, "camp": "black" },
+        { "id":20,"name": "卒", "rule": "soldier", "x": 6, "y": 3, "camp": "black" },
+        { "id":21,"name": "卒", "rule": "soldier", "x": 8, "y": 3, "camp": "black" },
+        { "id":22,"name": "炮", "rule": "gun", "x": 1, "y": 2, "camp": "black" },
+        { "id":23,"name": "炮", "rule": "gun", "x": 7, "y": 2, "camp": "black" },
+        { "id":24,"name": "車", "rule": "vehicle", "x": 0, "y": 0, "camp": "black" },
+        { "id":25,"name": "車", "rule": "vehicle", "x": 8, "y": 0, "camp": "black" },
+        { "id":26,"name": "马", "rule": "horse", "x": 1, "y": 0, "camp": "black" },
+        { "id":27,"name": "马", "rule": "horse", "x": 7, "y": 0, "camp": "black" },
+        { "id":28,"name": "象", "rule": "chancellor", "x": 2, "y": 0, "camp": "black" },
+        { "id":29,"name": "象", "rule": "chancellor", "x": 6, "y": 0, "camp": "black" },
+        { "id":30,"name": "士", "rule": "bachelor", "x": 3, "y": 0, "camp": "black" },
+        { "id":31,"name": "士", "rule": "bachelor", "x": 5, "y": 0, "camp": "black" },
+        { "id":32,"name": "将", "rule": "general", "x": 4, "y": 0, "camp": "black" }
+    ]
+    
+}
