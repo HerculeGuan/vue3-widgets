@@ -6,16 +6,18 @@ const rules = {
 
     // 公共规则触发
     if (notMove() || outBoundary()) return false;
-
     switch (rule) {
-      case "vehicle":
+      case "vehicle": // 车
         vehicleRule();
         break;
-      case "gun":
-        // gunRule();
-        break;
       case "general":
-        generalRule();
+        generalRule(); // 将
+        break;
+      case "bachelor":
+        bachelorRule(); // 士
+        break;
+      case "chancellor":
+        chancellorRule(); // 相
         break;
       case "soldier":
         console.log("soldier");
@@ -78,6 +80,16 @@ const generalRule = () => {
   if (!(inGeneralArea() && isCrossLine() && crossOneStep())) pass = false;
 };
 
+// 士的规则
+const bachelorRule = () => {
+  if (!(inGeneralArea() && crossbias(1))) pass = false;
+};
+
+// 相的规则
+const chancellorRule = () => {
+  if (!(inHalfArea() && crossbias(2))) pass = false;
+};
+
 export default rules;
 
 // 初始化数据
@@ -103,4 +115,12 @@ const inGeneralArea = () => {
     return x >= 3 && x <= 5 && y >= 0 && y <= 2;
   }
 }; // 在禁区
+const inHalfArea = () => {
+  if (camp === "red") {
+    return x >= 0 && x <= 8 && y >= 5 && y <= 9;
+  } else {
+    return x >= 0 && x <= 8 && y >= 0 && y <= 4;
+  }
+}; // 在禁区
 const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步
+const crossbias = (n) => Math.abs(x - intX) === n && Math.abs(y - intY) === n; // 只能走斜线n步
