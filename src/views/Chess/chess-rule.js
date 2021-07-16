@@ -5,21 +5,21 @@ const rules = {
     initValue(chess, initChess, chessList);
 
     // 公共规则触发
-    if (notMove() || outBoundary()) return false;
+    if (notMove() || outBoundary()) return;
     switch (rule) {
       case "vehicle": // 车
-        vehicleRule();
+        if (!vehicleRule()) return;
         break;
-      case "general":
-        generalRule(); // 将
+      case "general": // 将
+        if (!generalRule()) return;
         break;
-      case "bachelor":
-        bachelorRule(); // 士
+      case "bachelor": // 士
+        if (!bachelorRule()) return;
         break;
-      case "chancellor":
-        chancellorRule(); // 相
+      case "chancellor": // 相
+        if (!chancellorRule()) return;
         break;
-      case "soldier":
+      case "soldier": // 兵
         console.log("soldier");
         break;
     }
@@ -45,19 +45,21 @@ const pointOfFall = () => {
 
 // 车的规则
 const vehicleRule = () => {
-  list.forEach((el, idx) => {
+  let p = true;
+  list.forEach((el) => {
     if (x === intX) {
       let maxY = y > intY ? y : intY;
       let minY = y > intY ? intY : y;
-      if (el.x === x && el.y < maxY && el.y > minY) pass = false;
+      if (el.x === x && el.y < maxY && el.y > minY) p = false;
     } else if (y === intY) {
       let maxX = x > intX ? x : intX;
       let minX = x > intX ? intX : x;
-      if (el.y === y && el.x < maxX && el.x > minX) pass = false;
+      if (el.y === y && el.x < maxX && el.x > minX) p = false;
     } else {
-      pass = false;
+      p = false;
     }
   });
+  return p;
 };
 
 // 炮的规则
@@ -77,17 +79,17 @@ const vehicleRule = () => {
 
 // 将的规则
 const generalRule = () => {
-  if (!(inGeneralArea() && isCrossLine() && crossOneStep())) pass = false;
+  inGeneralArea() && isCrossLine() && crossOneStep();
 };
 
 // 士的规则
 const bachelorRule = () => {
-  if (!(inGeneralArea() && crossbias(1))) pass = false;
+  inGeneralArea() && crossbias(1);
 };
 
 // 相的规则
 const chancellorRule = () => {
-  if (!(inHalfArea() && crossbias(2))) pass = false;
+  inHalfArea() && crossbias(2);
 };
 
 export default rules;
@@ -122,5 +124,5 @@ const inHalfArea = () => {
     return x >= 0 && x <= 8 && y >= 0 && y <= 4;
   }
 }; // 在禁区
-const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步
+const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步之内
 const crossbias = (n) => Math.abs(x - intX) === n && Math.abs(y - intY) === n; // 只能走斜线n步
