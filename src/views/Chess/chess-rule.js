@@ -12,7 +12,13 @@ const rules = {
         vehicleRule();
         break;
       case "gun":
-        console.log("gun");
+        // gunRule();
+        break;
+      case "general":
+        generalRule();
+        break;
+      case "soldier":
+        console.log("soldier");
         break;
     }
     if (pass) pointOfFall();
@@ -67,6 +73,11 @@ const vehicleRule = () => {
 //   }
 // };
 
+// 将的规则
+const generalRule = () => {
+  if (!(inGeneralArea() && isCrossLine() && crossOneStep())) pass = false;
+};
+
 export default rules;
 
 // 初始化数据
@@ -85,3 +96,11 @@ const initValue = (chess, initChess, chessList) => {
 const notMove = () => x === intX && y === intY; // 没有动
 const outBoundary = () => x < 0 || x > 8 || y < 0 || y > 9; // 脱离边界
 const isCrossLine = () => !(x !== intX && y !== intY); // 走直线
+const inGeneralArea = () => {
+  if (camp === "red") {
+    return x >= 3 && x <= 5 && y >= 7 && y <= 9;
+  } else {
+    return x >= 3 && x <= 5 && y >= 0 && y <= 2;
+  }
+}; // 在禁区
+const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步
