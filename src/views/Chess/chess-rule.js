@@ -11,6 +11,7 @@ const rules = {
         if (!vehicleRule()) return;
         break;
       case "general": // 将
+        console.log(generalRule());
         if (!generalRule()) return;
         break;
       case "bachelor": // 士
@@ -20,7 +21,7 @@ const rules = {
         if (!chancellorRule()) return;
         break;
       case "soldier": // 兵
-        console.log("soldier");
+        if (!soldierRule()) return;
         break;
     }
     if (pass) pointOfFall();
@@ -79,17 +80,22 @@ const vehicleRule = () => {
 
 // 将的规则
 const generalRule = () => {
-  inGeneralArea() && isCrossLine() && crossOneStep();
+  return inGeneralArea() && isCrossLine() && crossOneStep();
 };
 
 // 士的规则
 const bachelorRule = () => {
-  inGeneralArea() && crossbias(1);
+  return inGeneralArea() && crossbias(1);
 };
 
 // 相的规则
 const chancellorRule = () => {
-  inHalfArea() && crossbias(2);
+  return inHalfArea() && crossbias(2);
+};
+
+// 兵的规则
+const soldierRule = () => {
+  return crossOneStep() && isCrossLine() && crossForward();
 };
 
 export default rules;
@@ -126,3 +132,12 @@ const inHalfArea = () => {
 }; // 在禁区
 const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步之内
 const crossbias = (n) => Math.abs(x - intX) === n && Math.abs(y - intY) === n; // 只能走斜线n步
+const crossForward = () => {
+  if (camp === "red") {
+    if (y > 4) return y - intY < 0;
+    if (y <= 4) return y - intY <= 0;
+  } else {
+    if (y >= 5) return y - intY >= 0;
+    if (y < 5) return y - intY > 0;
+  }
+}; // 只能前进 过河可以左右行走
