@@ -14,7 +14,6 @@ const rules = {
         if (!horseRule()) return;
         break;
       case "general": // 将
-        console.log(generalRule());
         if (!generalRule()) return;
         break;
       case "bachelor": // 士
@@ -67,7 +66,22 @@ const vehicleRule = () => {
 };
 
 const horseRule = () => {
-  return riRule();
+  if (!riRule()) return;
+  let p = true;
+  let signX, signY;
+  if (Math.abs(x - intX) === 1) {
+    signX = intX;
+    signY = y - intY > 0 ? intY + 1 : intY - 1;
+  } else {
+    signY = intY;
+    signX = x - intX > 0 ? intX + 1 : intX - 1;
+  }
+  list.forEach((el) => {
+    if (el.x === signX && el.y === signY) {
+      p = false;
+    }
+  });
+  return p;
 };
 
 // 炮的规则
