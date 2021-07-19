@@ -10,6 +10,9 @@ const rules = {
       case "vehicle": // 车
         if (!vehicleRule()) return;
         break;
+      case "horse": // 马
+        if (!horseRule()) return;
+        break;
       case "general": // 将
         console.log(generalRule());
         if (!generalRule()) return;
@@ -63,6 +66,10 @@ const vehicleRule = () => {
   return p;
 };
 
+const horseRule = () => {
+  return riRule();
+};
+
 // 炮的规则
 // const gunRule = (el) => {
 //   if (x === intX) {
@@ -90,7 +97,16 @@ const bachelorRule = () => {
 
 // 相的规则
 const chancellorRule = () => {
-  return inHalfArea() && crossbias(2);
+  if (!(inHalfArea() && crossbias(2))) return;
+  let p = true;
+  let signX = (x + intX) / 2;
+  let signY = (y + intY) / 2;
+  list.forEach((el) => {
+    if (el.x === signX && el.y === signY) {
+      p = false;
+    }
+  });
+  return p;
 };
 
 // 兵的规则
@@ -122,14 +138,20 @@ const inGeneralArea = () => {
   } else {
     return x >= 3 && x <= 5 && y >= 0 && y <= 2;
   }
-}; // 在禁区
+}; // 在老将禁区
 const inHalfArea = () => {
   if (camp === "red") {
     return x >= 0 && x <= 8 && y >= 5 && y <= 9;
   } else {
     return x >= 0 && x <= 8 && y >= 0 && y <= 4;
   }
-}; // 在禁区
+}; // 在半场禁区
+const riRule = () => {
+  return (
+    (Math.abs(x - intX) === 1 && Math.abs(y - intY) === 2) ||
+    (Math.abs(x - intX) === 2 && Math.abs(y - intY) === 1)
+  );
+}; // 日字规则
 const crossOneStep = () => Math.abs(x - intX) <= 1 && Math.abs(y - intY) <= 1; // 只能走一步之内
 const crossbias = (n) => Math.abs(x - intX) === n && Math.abs(y - intY) === n; // 只能走斜线n步
 const crossForward = () => {
